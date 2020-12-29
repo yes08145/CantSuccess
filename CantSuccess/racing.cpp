@@ -15,11 +15,18 @@ int main(){
 	vector<vector<int>> commands = { {2,5,3},{4,4,1},{1,7,3} };
 	vector<string> p = { "marina", "josipa", "nicola", "vinko", "filipa" };
 	vector<string> c = { "josipa", "filipa" ,"marina" ,"nicola" };
+	vector<int> progress = { 95,90,99,80,80,99 };
+	vector<int> speeds = { 1,1,1,1,1,1 };
 	/*string answer = so.solution1(p,c);*/
-	vector<int> answer = solut.solution4(array, commands);
+	/*vector<int> answer = solut.solution4(array, commands);*/
+	/*vector<int> answer = solut.solution6(progress, speeds);
+	for (auto ans : answer);
+	cout << ans;*/
+	vector<string> phone_book = { "119", "97674223", "1195524421" };
 	/*cout << answer;*/
-	for(auto ans : answer)
-	cout << ans;
+	bool sol7_answer = solut.solution7(phone_book);
+	cout << sol7_answer;
+	
 }
 
 

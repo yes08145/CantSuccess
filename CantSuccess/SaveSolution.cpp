@@ -74,3 +74,70 @@ vector<int> Solution::solution4(vector<int> array, vector<vector<int>> commands)
 		}
 		return answer;
 	}
+
+vector<int> Solution::solution5(vector<int> progresses, vector<int> speeds) {
+	vector<int> answer;
+	vector<int> cpypro;
+	int value = 0;
+	cpypro.resize(progresses.size());
+	int count = 0;
+	for (int i = 0; i < progresses.size(); i++) {
+		cpypro[i] = (100 - progresses[i]) / speeds[i];
+
+		if ((100 - progresses[i]) % speeds[i] != 0) {
+			cpypro[i] += 1;
+		}
+		if (i == 1) {
+			if (cpypro[1] > cpypro[0]) {
+				answer.push_back(count);
+				value = cpypro[1];
+				count = 0;
+			}
+			else {
+				value = cpypro[0];
+			}
+		}
+		else if (i > 1) {
+			if (cpypro[i] > value) {
+				answer.push_back(count);
+				value = cpypro[i];
+				count = 0;
+			}
+		}
+		count++;
+	}
+	answer.push_back(count);
+	return answer;
+}
+
+vector<int> Solution::solution6(vector<int> progresses, vector<int> speeds) {
+	vector<int> answer;
+
+	int day;
+	int max_day = 0;
+
+	for (int i = 0; i < progresses.size(); i++) {
+		day = (99 - progresses[i]) / speeds[i] + 1; // 99%까지 몇일이 걸리나 확인을 하는 과정(만약 2일이 걸리면 100% 까지는 2.xxxxx일이 걸리고 이는 즉 3일이 걸리는 것!)
+		if (answer.empty() || max_day < day)
+			answer.push_back(1);
+		else
+			++answer.back();
+
+		if (max_day < day)
+			max_day = day;
+	}
+	return answer;
+}
+
+bool Solution::solution7(vector<string> phone_book) {
+	
+	bool answer = true;
+	sort(phone_book.begin(), phone_book.end());
+	for (int i = 0; i < phone_book.size()-1;i++) {
+		if (phone_book[i+1].find(phone_book[i]) == 0) {
+			answer = false;
+			break;
+		}
+	}
+	return answer;
+}
